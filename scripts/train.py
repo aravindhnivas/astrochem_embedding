@@ -1,11 +1,5 @@
-import torch
 import pytorch_lightning as pl
-
-from astrochem_embedding.pipeline.data import (
-    SELFIESData,
-    StringDataModule,
-    MaskedStringDataModule,
-)
+from astrochem_embedding.pipeline.data import MaskedStringDataModule
 from astrochem_embedding import get_paths
 from astrochem_embedding.models import models
 
