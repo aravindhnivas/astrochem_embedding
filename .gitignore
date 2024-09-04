@@ -12,3 +12,4 @@ __pycache__/
 build/
 
 .DS_Store
+/notebooks/tb_logs
