@@ -12,17 +12,23 @@ Z_DIM = 32
 NUM_LAYERS = 1
 LR = 1e-4
 
-model = models.VICGAE(EMBEDDING_DIM, Z_DIM, NUM_LAYERS, lr=LR)
 
-data = MaskedStringDataModule(BATCH_SIZE, NUM_WORKERS)
+def main():
+    model = models.VICGAE(EMBEDDING_DIM, Z_DIM, NUM_LAYERS, lr=LR)
 
-logger = pl.loggers.TensorBoardLogger(
-    "tb_logs", name="VICAstrochemEmbedder", log_graph=True
-)
-summarizer = pl.callbacks.ModelSummary(max_depth=-1)
+    data = MaskedStringDataModule(BATCH_SIZE, NUM_WORKERS)
 
-trainer = pl.Trainer(max_epochs=5, callbacks=[summarizer], gpus=1, logger=logger)
-trainer.fit(model, data)
+    logger = pl.loggers.TensorBoardLogger(
+        "tb_logs", name="VICAstrochemEmbedder", log_graph=True
+    )
+    summarizer = pl.callbacks.ModelSummary(max_depth=-1)
 
-paths = get_paths()
-trainer.save_checkpoint(paths.get("models").joinpath("VICGAE.ckpt"))
+    trainer = pl.Trainer(max_epochs=5, callbacks=[summarizer], logger=logger)
+    trainer.fit(model, data)
+
+    paths = get_paths()
+    trainer.save_checkpoint(paths.get("models").joinpath("VICGAE.ckpt"))
+
+
+if __name__ == "__main__":
+    main()
