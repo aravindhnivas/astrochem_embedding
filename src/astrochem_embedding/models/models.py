@@ -76,7 +76,7 @@ class AutoEncoder(pl.LightningModule):
         targets = F.one_hot(Y, num_classes=self.vocab_size)
         output = self(X1)
         loss = self.metric(output, targets.float())
-        self.log("{prefix}_loss", loss)
+        self.log(f"{prefix}_loss", loss.item())
         return loss
 
     def training_step(self, batch, batch_idx):
