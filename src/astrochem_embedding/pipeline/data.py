@@ -19,6 +19,9 @@ from torch.utils.data import DataLoader, Dataset, random_split
 import pytorch_lightning as pl
 from sklearn.preprocessing import OneHotEncoder
 from astrochem_embedding import get_paths, Translator
+import os
+
+NUM_WORKERS = os.cpu_count() - 2
 
 
 class SELFIESDataset(Dataset):
@@ -89,7 +92,9 @@ class MaskedStringDataset(StringDataset):
 
 
 class SELFIESData(pl.LightningDataModule):
-    def __init__(self, batch_size: int = 256, num_workers: int = 0, path=None):
+    def __init__(
+        self, batch_size: int = 256, num_workers: int = NUM_WORKERS, path=None
+    ):
         super().__init__()
         self.batch_size = batch_size
         self.num_workers = num_workers
@@ -107,22 +112,32 @@ class SELFIESData(pl.LightningDataModule):
 
     def train_dataloader(self):
         return DataLoader(
-            self.train, batch_size=self.batch_size, num_workers=self.num_workers
+            self.train,
+            batch_size=self.batch_size,
+            num_workers=self.num_workers,
+            persistent_workers=True,
         )
 
     def val_dataloader(self):
         return DataLoader(
-            self.val, batch_size=self.batch_size, num_workers=self.num_workers
+            self.val,
+            batch_size=self.batch_size,
+            num_workers=self.num_workers,
+            persistent_workers=True,
         )
 
 
 class StringDataModule(SELFIESData):
-    def __init__(self, batch_size: int = 256, num_workers: int = 0, path=None):
+    def __init__(
+        self, batch_size: int = 256, num_workers: int = NUM_WORKERS, path=None
+    ):
         super().__init__(batch_size, num_workers, path)
         self.dataset = StringDataset(path)
 
 
 class MaskedStringDataModule(SELFIESData):
-    def __init__(self, batch_size: int = 256, num_workers: int = 0, path=None):
+    def __init__(
+        self, batch_size: int = 256, num_workers: int = NUM_WORKERS, path=None
+    ):
         super().__init__(batch_size, num_workers, path)
         self.dataset = MaskedStringDataset(path)
