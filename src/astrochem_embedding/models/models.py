@@ -184,5 +184,9 @@ class VICGAE(GRUAutoEncoder):
         loss_1 = self.metric(output_1, targets)
         loss_2 = self.metric(output_2, targets)
         loss = loss_1 + loss_2 + v + i + c
-        self.log(f"{prefix}_loss", {"loss": loss, "v": v, "i": i, "c": c})
+        # self.log(f"{prefix}_loss", {"loss": loss, "v": v, "i": i, "c": c})
+        self.log("validation_loss/total", loss)
+        self.log("validation_loss/v", v)
+        self.log("validation_loss/i", i)
+        self.log("validation_loss/c", c)
         return loss
