@@ -36,7 +36,7 @@ class SELFIESDataset(Dataset):
         self.encoder = OneHotEncoder(sparse=False)
 
     def __getitem__(self, index):
-        return self.data[index].astype(np.int)
+        return self.data[index].astype(int)
 
     def __len__(self):
         return self.shape[0]
