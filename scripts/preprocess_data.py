@@ -8,7 +8,7 @@ from astrochem_embedding import get_paths
 def error_selfies(smi: str):
     try:
         return encoder(smi)
-    except:
+    except Exception as _:
         return None
 
 

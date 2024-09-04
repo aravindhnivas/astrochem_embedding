@@ -7,18 +7,17 @@ either `torch`, other packages, or in `astrochem_embedding.layers`.
 """
 
 from typing import Union, Iterable
-from pathlib import Path
-
 import torch
 import joblib
-from torch import Tensor  # this is used for type annotations
 from torch import nn
 from torch.nn import functional as F
-import wandb
 import pytorch_lightning as pl
-
 from astrochem_embedding.models import layers
-from astrochem_embedding import get_paths, get_pretrained_path, Translator
+from astrochem_embedding import get_pretrained_path, Translator
+
+# from torch import Tensor  # this is used for type annotations
+# from pathlib import Path
+# import wandb
 
 
 class AutoEncoder(pl.LightningModule):
@@ -32,7 +31,7 @@ class AutoEncoder(pl.LightningModule):
     ):
         super().__init__()
         if not vocab_yaml:
-            paths = get_paths()
+            # paths = get_paths()
             vocab_yaml = get_pretrained_path().joinpath("translator.yml")
         self.vocab = Translator.from_yaml(vocab_yaml)
         vocab_size = len(self.vocab)
@@ -59,10 +58,7 @@ class AutoEncoder(pl.LightningModule):
         z_o, z_h = self.encoder(word_embeddings)
         mask = X != self.vocab.alphabet.index("[nop]")
         # perform a normalized summation over non-empty tokens
-        z = (
-            torch.einsum("ijk,ij->ik", z_o, mask.float())
-            / self.hparams.embedding_dim
-        )
+        z = torch.einsum("ijk,ij->ik", z_o, mask.float()) / self.hparams.embedding_dim
         return z
 
     @torch.no_grad()
@@ -119,7 +115,7 @@ class GRUAutoEncoder(AutoEncoder):
         vocab_yaml: Union[str, None] = None,
     ):
         if not vocab_yaml:
-            paths = get_paths()
+            # paths = get_paths()
             vocab_yaml = get_pretrained_path().joinpath("translator.yml")
         translator = Translator.from_yaml(vocab_yaml)
         vocab_size = len(translator)

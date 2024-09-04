@@ -1,12 +1,11 @@
 from typing import Union
-
 import pandas as pd
-import numpy as np
 from rdkit import Chem
-from astrochem_ml.smiles.isotopes import isotopologues_from_file, generate_all_isos
-from joblib import Parallel, delayed
-
+from astrochem_ml.smiles.isotopes import generate_all_isos
 from astrochem_embedding import get_paths
+
+# import numpy as np
+# from joblib import Parallel, delayed
 
 
 def convert_inchi_to_smiles(inchi: str) -> Union[None, Chem.Mol]:

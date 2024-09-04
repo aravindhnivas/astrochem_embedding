@@ -6,18 +6,18 @@ This module is intended for dataset abstractions,
 comprising data generation, I/O, and `DataModule`
 and `Dataset` definitions.
 """
-from abc import abstractmethod
-from typing import Union, Type
-from os import environ
-from warnings import warn
+
+# from abc import abstractmethod
+# from typing import Union, Type
+# from os import environ
+# from warnings import warn
+# import selfies as sf
 
 import torch
 import numpy as np
-import selfies as sf
 from torch.utils.data import DataLoader, Dataset, random_split
 import pytorch_lightning as pl
 from sklearn.preprocessing import OneHotEncoder
-
 from astrochem_embedding import get_paths, Translator
 
 

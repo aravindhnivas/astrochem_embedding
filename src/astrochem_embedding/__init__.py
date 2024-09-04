@@ -7,3 +7,15 @@ from astrochem_embedding.models.models import VICGAE, GRUAutoEncoder
 from astrochem_embedding.pipeline.data import MaskedStringDataModule, StringDataModule
 
 __version__ = "0.2.0"
+__all__ = [
+    "get_paths",
+    "Translator",
+    "get_pretrained_path",
+    "VICGAE",
+    "GRUAutoEncoder",
+    "MaskedStringDataModule",
+    "StringDataModule",
+    "layers",
+    "pipeline",
+    "models",
+]

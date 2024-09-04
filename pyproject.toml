@@ -5,10 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "astrochem_embedding"
 description = "Language models for astrochemistry"
-authors = [
-    {name = "Kelvin Lee", email = "kin.long.kelvin.lee@gmail.com"}
-]
-license = {text = "MIT"}
+authors = [{ name = "Kelvin Lee", email = "kin.long.kelvin.lee@gmail.com" }]
+license = { text = "MIT" }
 requires-python = ">=3.8"
 dynamic = ["version", "readme"]
 keywords = ["astrochemistry", "nlp", "self-supervised-learning"]
@@ -16,6 +14,9 @@ classifiers = [
     "Development Status :: 1 - Planning",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
     "click>=8.0.1",
@@ -28,7 +29,7 @@ dependencies = [
     "ruamel.yaml>=0.17.17",
     "scikit-learn>=1.0.1",
     "pandas>=1.3.4",
-    "torch>=1.13.1"
+    "torch>=1.13.1",
 ]
 
 [project.optional-dependencies]
@@ -42,7 +43,7 @@ dev = [
     "flake8-bugbear>=21.4.3",
     "flake8-docstrings>=1.6.0",
     "pre-commit-hooks>=4.0.1",
-    "isort"
+    "isort",
 ]
 
 
@@ -58,6 +59,5 @@ show_missing = true
 fail_under = 100
 
 [tool.setuptools.dynamic]
-version = {attr = "astrochem_embedding.__version__"}
-readme = {file = "README.rst"}
-
+version = { attr = "astrochem_embedding.__version__" }
+readme = { file = "README.rst" }

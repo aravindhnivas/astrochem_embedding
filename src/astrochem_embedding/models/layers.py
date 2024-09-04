@@ -6,12 +6,13 @@ of models.
 """
 
 import torch
-from torch import Tensor  # this is used for type annotations
-from torch import nn
-from torch.nn import functional as F
-import pytorch_lightning as pl
 
-from astrochem_embedding import layers
+from torch import nn
+
+# from torch import Tensor  # this is used for type annotations
+# from torch.nn import functional as F
+# import pytorch_lightning as pl
+# from astrochem_embedding import layers
 
 
 class VarianceHinge(nn.Module):

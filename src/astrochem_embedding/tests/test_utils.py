@@ -8,7 +8,7 @@ def test_pretrained_path():
 
 
 def test_translator_pretrained():
-    t = utils.Translator.from_pretrained()
+    utils.Translator.from_pretrained()
 
 
 def test_translator_features():

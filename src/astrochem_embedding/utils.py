@@ -1,11 +1,10 @@
 from functools import cached_property
-from typing import Dict, Type, List, Union, Iterable
+from typing import Dict, Type, List, Iterable
 from pathlib import Path
-
-import numpy as np
 import selfies as sf
 from ruamel.yaml import YAML
 
+# import numpy as np
 src_path = Path(__file__)
 top = src_path.parents[2].absolute()
 

@@ -1,7 +1,8 @@
 import selfies as sf
 import numpy as np
 from tqdm.auto import tqdm
-from ruamel.yaml import YAML
+
+# from ruamel.yaml import YAML
 from joblib import Parallel, delayed
 
 from astrochem_embedding import get_paths, Translator
