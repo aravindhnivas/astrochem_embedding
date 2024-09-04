@@ -15,10 +15,6 @@ import pytorch_lightning as pl
 from astrochem_embedding.models import layers
 from astrochem_embedding import get_pretrained_path, Translator
 
-# from torch import Tensor  # this is used for type annotations
-# from pathlib import Path
-# import wandb
-
 
 class AutoEncoder(pl.LightningModule):
     def __init__(
