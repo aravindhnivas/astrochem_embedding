@@ -21,7 +21,8 @@ except ImportError:
 
 
 package = "astrochem_embedding"
-python_versions = ["3.9", "3.8", "3.7", "3.6"]
+python_versions = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = (
     "pre-commit",
