@@ -2,11 +2,12 @@ import pytorch_lightning as pl
 from astrochem_embedding.pipeline.data import MaskedStringDataModule
 from astrochem_embedding import get_paths
 from astrochem_embedding.models import models
+import os
 
 pl.seed_everything(215015)
 
 BATCH_SIZE = 128
-NUM_WORKERS = 12
+NUM_WORKERS = os.cpu_count() - 2
 EMBEDDING_DIM = 128
 Z_DIM = 32
 NUM_LAYERS = 1
@@ -27,7 +28,7 @@ def main():
     trainer.fit(model, data)
 
     paths = get_paths()
-    trainer.save_checkpoint(paths.get("models").joinpath("VICGAE.ckpt"))
+    trainer.save_checkpoint(paths.get("models").joinpath("VICGAE_new.ckpt"))
 
 
 if __name__ == "__main__":
